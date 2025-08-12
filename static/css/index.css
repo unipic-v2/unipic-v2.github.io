@@ -307,3 +307,128 @@ video {
 .carousel-dot.active {
   background: #3273dc;
 }
+
+/* Image editing scrollable container */
+.editing-scroll-container {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: #3273dc #f0f0f0;
+}
+
+.editing-scroll-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.editing-scroll-container::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 4px;
+}
+
+.editing-scroll-container::-webkit-scrollbar-thumb {
+  background: #3273dc;
+  border-radius: 4px;
+}
+
+.editing-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #2366d1;
+}
+
+.editing-cases-wrapper {
+  display: flex;
+  min-width: max-content;
+  gap: 20px;
+  padding: 10px 0;
+}
+
+.editing-case {
+  min-width: 300px;
+  max-width: 300px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.editing-case .subtitle {
+  min-height: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+.editing-case .columns {
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editing-case .column {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editing-case img {
+  max-width: 100%;
+  max-height: 180px;
+  object-fit: contain;
+}
+
+/* Generation scrollable container */
+.generation-scroll-container {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: #3273dc #f0f0f0;
+}
+
+.generation-scroll-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.generation-scroll-container::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 4px;
+}
+
+.generation-scroll-container::-webkit-scrollbar-thumb {
+  background: #3273dc;
+  border-radius: 4px;
+}
+
+.generation-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #2366d1;
+}
+
+.generation-cases-wrapper {
+  display: flex;
+  min-width: max-content;
+  gap: 20px;
+  padding: 10px 0;
+}
+
+.generation-case {
+  min-width: 280px;
+  max-width: 280px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.generation-case .subtitle {
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+.generation-case img {
+  margin-top: auto;
+}

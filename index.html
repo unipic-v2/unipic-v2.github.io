@@ -105,7 +105,7 @@
               <td>x</td>
               <td>x</td>
             </tr>
-            <tr>
+            <!-- <tr>
               <td>Editing</td>
               <td>Step1X-Edit</td>
               <td>x</td>
@@ -115,11 +115,22 @@
               <td>x</td>
               <td>x</td>
               <td>x</td>
+            </tr> -->
+            <tr>
+              <td>Gen.& Edit.</td>
+              <td>FLUX.1-Kontext</td>
+              <td>-</td>
+              <td>-</td>
+              <td>6.26</td>
+              <td>3.52</td>
+              <td>x</td>
+              <td>x</td>
+              <td>x</td>
             </tr>
             <tr>
               <td>Unified</td>
               <td>BAGEL</td>
-              <td><span style="text-decoration: underline;">0.88</span></td>
+              <td>0.88</td>
               <td><span class="has-text-weight-bold">85.07</span></td>
               <td>6.52</td>
               <td>3.20</td>
@@ -130,10 +141,10 @@
             <tr class="has-background-success-light">
               <td><span class="has-text-weight-bold">Gen. & Edit.</span></td>
               <td><span class="has-text-weight-bold">UniPic2-SD3.5M-Kontext</span></td>
-              <td><span class="has-text-weight-bold">0.89</span></td>
+              <td><span class="text-decoration: underline;">0.89</span></td>
               <td><span style="text-decoration: underline;">84.23</span></td>
-              <td>6.54</td>
-              <td><span style="text-decoration: underline;">3.99</span></td>
+              <td><span style="text-decoration: underline;">6.59</span></td>
+              <td><span style="text-decoration: underline;">4.00</span></td>
               <td>x</td>
               <td>x</td>
               <td>x</td>
@@ -141,10 +152,10 @@
             <tr class="has-background-success-light">
               <td><span class="has-text-weight-bold">Unified</span></td>
               <td><span class="has-text-weight-bold">UniPic2-Metaquery</span></td>
-              <td>0.86</td>
-              <td>83.63</td>
-              <td><span style="text-decoration: underline;">6.90</span></td>
-              <td><span class="has-text-weight-bold">4.10</span></td>
+              <td><span class="has-text-weight-bold">0.90</span></td>
+              <td>83.79</td>
+              <td><span class="has-text-weight-bold">6.87</span></td>
+              <td><span class="has-text-weight-bold">4.03</span></td>
               <td><span style="text-decoration: underline;">83.5</span></td>
               <td><span class="has-text-weight-bold">58.6</span></td>
               <td><span style="text-decoration: underline;">67.1</span></td>
@@ -167,82 +178,119 @@
     <div class="box mt-6">
       <h3 class="title is-4">Text-to-Image Generation</h3>
       
-              <!-- Cases Grid -->
-        <div class="columns is-vcentered">
-          <!-- Case 1 -->
-          <div class="column is-3">
-            <p class="subtitle is-7"><strong>Case 1:</strong> A tranquil pond with vibrant clear blue water, where three pristine white waterlilies float gracefully on the surface. Each waterlily has a perfectly formed shape with delicate petals radiating outwards from a yellow center. The smooth surface of the water reflects the sky above, enhancing the serenity of the scene, as gentle ripples emanate outward from the blossoms.</p>
-            <img src="static/imgs/ours_gen0.png" alt="Text-to-Image Generation Case 1" style="width: 100%; height: auto;">
+                      <!-- Scrollable Cases Container -->
+        <div class="generation-scroll-container">
+          <div class="generation-cases-wrapper">
+            <!-- Case 1 -->
+            <div class="generation-case">
+              <p class="subtitle is-7"><strong>Case 1:</strong> A tranquil pond with vibrant clear blue water, where three pristine white waterlilies float gracefully on the surface. Each waterlily has a perfectly formed shape with delicate petals radiating outwards from a yellow center. The smooth surface of the water reflects the sky above, enhancing the serenity of the scene, as gentle ripples emanate outward from the blossoms.</p>
+              <img src="static/imgs/ours_gen0.png" alt="Text-to-Image Generation Case 1" style="width: 100%; height: auto;">
+            </div>
+            
+            <!-- Case 2 -->
+            <div class="generation-case">
+              <p class="subtitle is-7"><strong>Case 2:</strong> A visually striking isometric design spells out the word 'skywork' and the second row spells 'unipic' using an array of artist pencils with softly rounded edges, demonstrating the principles of modular constructivism. Each pencil features a pastel color palette, blending harmoniously against a serene blue background. The entire composition benefits from soft, smooth lighting that accentuates the textures and forms, created with a physically based rendering technique that provides a realistic appearance, with the entire artwork centrally positioned within the frame, creating a trendy and aesthetically pleasing image.</p>
+              <img src="static/imgs/ours_gen1.png" alt="Text-to-Image Generation Case 2" style="width: 100%; height: auto;">
+            </div>
+            
+            <!-- Case 3 -->
+            <div class="generation-case">
+              <p class="subtitle is-7"><strong>Case 3:</strong> A vintage illustration of a retro computer where 'skywork' is in the screen, vaporwave aesthetic, in the style of Jim Steranko, light pink and light blue, Behance, fancy background.</p>
+              <img src="static/imgs/ours_gen2.png" alt="Text-to-Image Generation Case 3" style="width: 100%; height: auto;">
+            </div>
+            
+            <!-- Case 4 -->
+            <div class="generation-case">
+              <p class="subtitle is-7"><strong>Case 4:</strong> a cute cat dressed as a Victorian gentleman, standing in the foggy streets of Victorian London, fog, refractions, cinematic still, dynamic lighting, ultra detailed, intricate, realistic fur, oil painting, fine strokes, paint texture, textured canvas</p>
+              <img src="static/imgs/ours_gen3.png" alt="Text-to-Image Generation Case 4" style="width: 100%; height: auto;">
+            </div>
+            
+            <!-- Case 5 (Additional case to demonstrate scrolling) -->
+            <div class="generation-case">
+              <p class="subtitle is-7"><strong>Case 5:</strong> [Your case 5 description here]</p>
+              <img src="static/imgs/ours_gen4.png" alt="Text-to-Image Generation Case 5" style="width: 100%; height: auto;">
+            </div>
+            
+            <!-- Case 6 (Additional case to demonstrate scrolling) -->
+            <div class="generation-case">
+              <p class="subtitle is-7"><strong>Case 6:</strong> [Your case 6 description here]</p>
+              <img src="static/imgs/ours_gen5.png" alt="Text-to-Image Generation Case 6" style="width: 100%; height: auto;">
+            </div>
           </div>
-          <!-- Case 2 -->
-          <div class="column is-3">
-            <p class="subtitle is-7"><strong>Case 2:</strong> A visually striking isometric design spells out the word 'skywork' and the second row spells 'unipic' using an array of artist pencils with softly rounded edges, demonstrating the principles of modular constructivism. Each pencil features a pastel color palette, blending harmoniously against a serene blue background. The entire composition benefits from soft, smooth lighting that accentuates the textures and forms, created with a physically based rendering technique that provides a realistic appearance, with the entire artwork centrally positioned within the frame, creating a trendy and aesthetically pleasing image.</p>
-            <img src="static/imgs/ours_gen1.png" alt="Text-to-Image Generation Case 2" style="width: 100%; height: auto;">
-          </div>
-                    <!-- Case 3 -->
-          <div class="column is-3">
-            <p class="subtitle is-7"><strong>Case 3:</strong> [Your case 3 description here]</p>
-            <img src="static/imgs/ours_gen2.png" alt="Text-to-Image Generation Case 3" style="width: 100%; height: auto;">
-          </div>
-          <!-- Case 4 -->
-          <div class="column is-3">
-            <p class="subtitle is-7"><strong>Case 4:</strong> [Your case 4 description here]</p>
-            <img src="static/imgs/ours_gen3.png" alt="Text-to-Image Generation Case 4" style="width: 100%; height: auto;">
-          </div>
-      </div>
+        </div>
     </div>
 
         <!-- Task 2: Image Editing -->
     <div class="box mt-6">
       <h3 class="title is-4">Image Editing</h3>
       
-      <!-- Cases Grid -->
-      <div class="columns is-vcentered">
-        <!-- Top Left: Case 1 Text -->
-        <div class="column is-4">
-          <p class="subtitle is-5"><strong>Case 1:</strong> put the word 'skywork' on the metal kitten </p>
-        </div>
-        <!-- Top Center: Case 2 Text -->
-        <div class="column is-4">
-          <p class="subtitle is-5"><strong>Case 2:</strong> Make the person lower his right arm. </p>
-        </div>
-        <!-- Top Right: Case 3 Text -->
-        <div class="column is-4">
-          <p class="subtitle is-5"><strong>Case 3:</strong> change the word "dreamshot" to "skywork" </p>
-        </div>
-      </div>
-      
-      <div class="columns is-vcentered">
-        <!-- Bottom Left: Case 1 Images -->
-        <div class="column is-4">
-          <div class="columns is-centered">
-            <div class="column is-6">
-              <img src="static/imgs/ours_edit0.png" alt="Image Editing Case 1 - Before" style="width: 100%; height: auto;">
-            </div>
-            <div class="column is-6">
-              <img src="static/imgs/ours_edit0_1.png" alt="Image Editing Case 1 - After" style="width: 100%; height: auto;">
+      <!-- Scrollable Cases Container -->
+      <div class="editing-scroll-container">
+        <div class="editing-cases-wrapper">
+          <!-- Case 1 -->
+          <div class="editing-case">
+            <p class="subtitle is-6"><strong>Case 1:</strong> put the word 'skywork' on the metal kitten </p>
+            <div class="columns is-centered">
+              <div class="column is-6">
+                <img src="static/imgs/ours_edit0.png" alt="Image Editing Case 1 - Before" style="width: 100%; height: auto;">
+              </div>
+              <div class="column is-6">
+                <img src="static/imgs/ours_edit0_1.png" alt="Image Editing Case 1 - After" style="width: 100%; height: auto;">
+              </div>
             </div>
           </div>
-        </div>
-        <!-- Bottom Center: Case 2 Images -->
-        <div class="column is-4">
-          <div class="columns is-centered">
-            <div class="column is-6">
-              <img src="static/imgs/ours_edit2.jpg" alt="Image Editing Case 2 - Before" style="width: 100%; height: auto;">
-            </div>
-            <div class="column is-6">
-              <img src="static/imgs/ours_edit2_1.png" alt="Image Editing Case 2 - After" style="width: 100%; height: auto;">
+          
+          <!-- Case 2 -->
+          <div class="editing-case">
+            <p class="subtitle is-6"><strong>Case 2:</strong> Make the person lower his right arm. </p>
+            <div class="columns is-centered">
+              <div class="column is-6">
+                <img src="static/imgs/ours_edit2.jpg" alt="Image Editing Case 2 - Before" style="width: 100%; height: auto;">
+              </div>
+              <div class="column is-6">
+                <img src="static/imgs/ours_edit2_1.png" alt="Image Editing Case 2 - After" style="width: 100%; height: auto;">
+              </div>
             </div>
           </div>
-        </div>
-        <!-- Bottom Right: Case 3 Images -->
-        <div class="column is-4">
-          <div class="columns is-centered">
-            <div class="column is-6">
-              <img src="static/imgs/ours_edit1.jpg" alt="Image Editing Case 3 - Before" style="width: 100%; height: auto;">
+          
+          <!-- Case 3 -->
+          <div class="editing-case">
+            <p class="subtitle is-6"><strong>Case 3:</strong> change the word "dreamshot" to "skywork" </p>
+            <div class="columns is-centered">
+              <div class="column is-6">
+                <img src="static/imgs/ours_edit1.jpg" alt="Image Editing Case 3 - Before" style="width: 100%; height: auto;">
+              </div>
+              <div class="column is-6">
+                <img src="static/imgs/ours_edit1_1.png" alt="Image Editing Case 3 - After" style="width: 100%; height: auto;">
+              </div>
             </div>
-            <div class="column is-6">
-              <img src="static/imgs/ours_edit1_1.png" alt="Image Editing Case 3 - After" style="width: 100%; height: auto;">
+          </div>
+          
+
+          
+          <!-- Case 5 (Additional case to demonstrate scrolling) -->
+          <div class="editing-case">
+            <p class="subtitle is-6"><strong>Case 4:</strong> Change the style of this image to Ice Age.</p>
+            <div class="columns is-centered">
+              <div class="column is-6">
+                <img src="static/imgs/ours_edit4.png" alt="Image Editing Case 5 - Before" style="width: 100%; height: auto;">
+              </div>
+              <div class="column is-6">
+                <img src="static/imgs/ours_edit4_1.png" alt="Image Editing Case 5 - After" style="width: 100%; height: auto;">
+              </div>
+            </div>
+          </div>
+
+          <!-- Case 4 (Additional case to demonstrate scrolling) -->
+          <div class="editing-case">
+            <p class="subtitle is-6"><strong>Case 5:</strong> Add a painting to the easel.</p>
+            <div class="columns is-centered">
+              <div class="column is-6">
+                <img src="static/imgs/ours_edit3.png" alt="Image Editing Case 4 - Before" style="width: 100%; height: auto;">
+              </div>
+              <div class="column is-6">
+                <img src="static/imgs/ours_edit3_1.jpeg" alt="Image Editing Case 4 - After" style="width: 100%; height: auto;">
+              </div>
             </div>
           </div>
         </div>
