@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="description" content="Skywork UniPic 2.0: Building Kontext Model with Online RL for Unified Multimodal Model" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Skywork UniPic 2.0: Building Kontext Model with Online RL for Unified Multimodal Model</title>
+
+  <!-- FONTS & STYLES -->
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="icon" href="static/images/logo.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  
+<section class="hero" style="background: url('static/imgs/teaser.jpg') no-repeat center center fixed; background-size: cover;">
+  <div class="hero-body has-text-centered" style="background-color: rgba(255,255,255,0.85);">
+    <h1 class="title is-1">Skywork UniPic 2.0:<br>Building Kontext Model with Online RL for Unified Multimodal Model</h1>
+  
+
+    <p><em>Skywork AI</em></p>
+  
+    <p style="margin-top:1rem;">
+      <a href="https://github.com/SkyworkAI/UniPic" class="button is-dark is-small is-rounded">
+        <span class="icon"><i class="ai ai-arxiv"></i></span><span>Technical Report</span>
+      </a>
+      <a href="https://github.com/SkyworkAI/UniPic" class="button is-dark is-small is-rounded">
+        <span class="icon"><i class="fab fa-github"></i></span><span>GitHub</span>
+      </a>
+      <a href="https://huggingface.co/spaces/Skywork/UniPic-2.0" class="button is-dark is-small is-rounded">
+        <span class="icon">🤗</span><span>HuggingFace</span>
+      </a>
+    </p>
+  </div>
+</section>
+<!-- ABSTRACT -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-2 has-text-centered">Abstract</h2>
+    
+    <!-- Abstract Text -->
+    <div class="content has-text-justified">
+      Recent advances in multimodal models have demonstrated impressive capabilities in unified image generation and editing. However, some prominent open-source models focus primarily on scaling model parameters to achieve better image generation and editing results, rather than focusing on optimal training strategies.In this technical report, we build upon SD3.5-Medium to explore how a 2B-parameter DiT model can achieve impressive image generation and editing capabilities, as well as how to extend it into a unified multimodal model that delivers leading performance in the open-source community. We first modify the architecture of SD3.5-Medium and pre-train it on large-scale, high-quality image generation and editing data to jointly support text-to-image generation and image editing tasks. To enhance instruction following and editing consistency, we propose a novel Progressive Dual-Task Reinforcement strategy, which effectively strengthens both tasks in a staged manner. We empirically validate that the reinforcement phases for different tasks are mutually beneficial and do not induce negative interference. After pre-training and reinforcement strategies, we obtain the <strong>UniPic2-SD3.5M-Kontext</strong> model, which surpasses BAGEL (with 7B generation parameters) and Flux-Kontext (with 12B generation parameters) in image generation and editing performance. Furthermore, following the MetaQueries, we connect the UniPic2-SD3.5M-Kontext and Qwen2.5-VL-7B via a connector and perform joint training to launch a unified multimodal model <strong>UniPic2-Metaquery</strong>.UniPic2-Metaquery integrates understanding, generation, and editing, achieving top-tier performance across diverse tasks with a simple and scalable training paradigm. This consistently validates the effectiveness and generalizability of our proposed training paradigm, which we formalize as <strong>Skywork UniPic 2.0</strong>. 
+    </div>
+
+</section>
+
+<!-- Method -->
+<section class="section">
+
+    <!-- Human Evaluation -->
+
+    <div class="container is-max-desktop">
+
+    <h2 class="title is-2 has-text-centered">Model Overview</h2>
+    <div class="box mt-6"> 
+      <p><strong>Skywork UniPic 2.0 is a unified multimodal model that integrates understanding, generation, and editing. It is trained on a large-scale, high-quality image generation and editing dataset, and uses a progressive dual-task reinforcement strategy to enhance instruction following and editing consistency.</strong></p>
+      <div class="table-container">
+        <img src="static/imgs/unipicv2-pipeline.png" alt="unipic" style="width: 100%; height: auto;">
+      </div> 
+    </div>
+  </div>
+      
+</section>
+
+
+
+<!-- Comparison -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-2 has-text-centered">Performance Comparison</h2>
+
+    <!-- GameWorld Score Benchmark -->
+    <div class="box">
+      <h3 class="title is-4">Benchmark Comparison</h3>
+      <p><strong>We compare the performance of UniPic2-SD3.5M-Kontext and UniPic2-Metaquery with the state-of-the-art models on the image generation and editing tasks.</strong></p>
+      <div class="table-container">
+        <table class="table is-fullwidth is-hoverable">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Model</th>
+              <th>GenEval ↑</th>
+              <th>DPG↑</th>
+              <th>GEdit-En ↑</th>
+              <th>ImgEdit ↑</th>
+              <th>MMBench ↑</th>
+              <th>MMMU ↑</th>
+              <th>MM-Vet ↑</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Generation</td>
+              <td>SD3.5-Medium</td>
+              <td>0.65</td>
+              <td>83.86</td>
+              <td>x</td>
+              <td>x</td>
+              <td>x</td>
+              <td>x</td>
+              <td>x</td>
+            </tr>
+            <tr>
+              <td>Editing</td>
+              <td>Step1X-Edit</td>
+              <td>x</td>
+              <td>x</td>
+              <td><span class="has-text-weight-bold">6.97</span></td>
+              <td>3.06</td>
+              <td>x</td>
+              <td>x</td>
+              <td>x</td>
+            </tr>
+            <tr>
+              <td>Unified</td>
+              <td>BAGEL</td>
+              <td><span style="text-decoration: underline;">0.88</span></td>
+              <td><span class="has-text-weight-bold">85.07</span></td>
+              <td>6.52</td>
+              <td>3.20</td>
+              <td><span class="has-text-weight-bold">85.0</span></td>
+              <td><span style="text-decoration: underline;">55.3</span></td>
+              <td><span class="has-text-weight-bold">67.2</span></td>
+            </tr>
+            <tr class="has-background-success-light">
+              <td><span class="has-text-weight-bold">Gen. & Edit.</span></td>
+              <td><span class="has-text-weight-bold">UniPic2-SD3.5M-Kontext</span></td>
+              <td><span class="has-text-weight-bold">0.89</span></td>
+              <td><span style="text-decoration: underline;">84.23</span></td>
+              <td>6.54</td>
+              <td><span style="text-decoration: underline;">3.99</span></td>
+              <td>x</td>
+              <td>x</td>
+              <td>x</td>
+            </tr>
+            <tr class="has-background-success-light">
+              <td><span class="has-text-weight-bold">Unified</span></td>
+              <td><span class="has-text-weight-bold">UniPic2-Metaquery</span></td>
+              <td>0.86</td>
+              <td>83.63</td>
+              <td><span style="text-decoration: underline;">6.90</span></td>
+              <td><span class="has-text-weight-bold">4.10</span></td>
+              <td><span style="text-decoration: underline;">83.5</span></td>
+              <td><span class="has-text-weight-bold">58.6</span></td>
+              <td><span style="text-decoration: underline;">67.1</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+  <!-- GENERATION AND EDITING DEMOS -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-2 has-text-centered">Generation and Editing Across Diverse Tasks</h2>
+    
+    <!-- Task 1: Text-to-Image Generation -->
+    <div class="box mt-6">
+      <h3 class="title is-4">Text-to-Image Generation</h3>
+      
+              <!-- Cases Grid -->
+        <div class="columns is-vcentered">
+          <!-- Case 1 -->
+          <div class="column is-3">
+            <p class="subtitle is-7"><strong>Case 1:</strong> A tranquil pond with vibrant clear blue water, where three pristine white waterlilies float gracefully on the surface. Each waterlily has a perfectly formed shape with delicate petals radiating outwards from a yellow center. The smooth surface of the water reflects the sky above, enhancing the serenity of the scene, as gentle ripples emanate outward from the blossoms.</p>
+            <img src="static/imgs/ours_gen0.png" alt="Text-to-Image Generation Case 1" style="width: 100%; height: auto;">
+          </div>
+          <!-- Case 2 -->
+          <div class="column is-3">
+            <p class="subtitle is-7"><strong>Case 2:</strong> A visually striking isometric design spells out the word 'skywork' and the second row spells 'unipic' using an array of artist pencils with softly rounded edges, demonstrating the principles of modular constructivism. Each pencil features a pastel color palette, blending harmoniously against a serene blue background. The entire composition benefits from soft, smooth lighting that accentuates the textures and forms, created with a physically based rendering technique that provides a realistic appearance, with the entire artwork centrally positioned within the frame, creating a trendy and aesthetically pleasing image.</p>
+            <img src="static/imgs/ours_gen1.png" alt="Text-to-Image Generation Case 2" style="width: 100%; height: auto;">
+          </div>
+                    <!-- Case 3 -->
+          <div class="column is-3">
+            <p class="subtitle is-7"><strong>Case 3:</strong> [Your case 3 description here]</p>
+            <img src="static/imgs/ours_gen2.png" alt="Text-to-Image Generation Case 3" style="width: 100%; height: auto;">
+          </div>
+          <!-- Case 4 -->
+          <div class="column is-3">
+            <p class="subtitle is-7"><strong>Case 4:</strong> [Your case 4 description here]</p>
+            <img src="static/imgs/ours_gen3.png" alt="Text-to-Image Generation Case 4" style="width: 100%; height: auto;">
+          </div>
+      </div>
+    </div>
+
+        <!-- Task 2: Image Editing -->
+    <div class="box mt-6">
+      <h3 class="title is-4">Image Editing</h3>
+      
+      <!-- Cases Grid -->
+      <div class="columns is-vcentered">
+        <!-- Top Left: Case 1 Text -->
+        <div class="column is-4">
+          <p class="subtitle is-5"><strong>Case 1:</strong> put the word 'skywork' on the metal kitten </p>
+        </div>
+        <!-- Top Center: Case 2 Text -->
+        <div class="column is-4">
+          <p class="subtitle is-5"><strong>Case 2:</strong> Make the person lower his right arm. </p>
+        </div>
+        <!-- Top Right: Case 3 Text -->
+        <div class="column is-4">
+          <p class="subtitle is-5"><strong>Case 3:</strong> change the word "dreamshot" to "skywork" </p>
+        </div>
+      </div>
+      
+      <div class="columns is-vcentered">
+        <!-- Bottom Left: Case 1 Images -->
+        <div class="column is-4">
+          <div class="columns is-centered">
+            <div class="column is-6">
+              <img src="static/imgs/ours_edit0.png" alt="Image Editing Case 1 - Before" style="width: 100%; height: auto;">
+            </div>
+            <div class="column is-6">
+              <img src="static/imgs/ours_edit0_1.png" alt="Image Editing Case 1 - After" style="width: 100%; height: auto;">
+            </div>
+          </div>
+        </div>
+        <!-- Bottom Center: Case 2 Images -->
+        <div class="column is-4">
+          <div class="columns is-centered">
+            <div class="column is-6">
+              <img src="static/imgs/ours_edit2.jpg" alt="Image Editing Case 2 - Before" style="width: 100%; height: auto;">
+            </div>
+            <div class="column is-6">
+              <img src="static/imgs/ours_edit2_1.png" alt="Image Editing Case 2 - After" style="width: 100%; height: auto;">
+            </div>
+          </div>
+        </div>
+        <!-- Bottom Right: Case 3 Images -->
+        <div class="column is-4">
+          <div class="columns is-centered">
+            <div class="column is-6">
+              <img src="static/imgs/ours_edit1.jpg" alt="Image Editing Case 3 - Before" style="width: 100%; height: auto;">
+            </div>
+            <div class="column is-6">
+              <img src="static/imgs/ours_edit1_1.png" alt="Image Editing Case 3 - After" style="width: 100%; height: auto;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Task 3: Multimodal Understanding -->
+    <div class="box mt-6">
+      <h3 class="title is-4">Multimodal Understanding</h3>
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <img src="static/imgs/understanding.png" alt="Multimodal Understanding" style="width: 100%; height: auto;">
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</section>
+
+
+<!-- ACK / CITATION -->
+<section class="section">
+<div class="container is-max-desktop">
+      <h2 class="title is-3">Acknowledgement</h2>
+      <div class="content has-text-justified">
+        
+        <p>We would like to express our gratitude to:</p>
+
+<ul>
+  <li><a href="https://huggingface.co/stabilityai/stable-diffusion-3.5-medium">SD3.5-Medium</a> for their strong base model</li>
+  <li><a href="https://github.com/QwenLM/Qwen2.5-VL">Qwen2.5-VL</a> for their strong vision-language model</li>
+  <li><a href="https://github.com/wusize/OpenUni">OpenUni</a> for their simple unified multimodal framework</li>
+  <li><a href="https://github.com/facebookresearch/metaquery">Metauery</a> for their excellent unified multimodal model</li>
+  <li><a href="https://github.com/yifan123/flow_grpo">Flow-GRPO</a> for their RL training framework</li>
+</ul>
+
+<p>We are grateful to the broader research community for their open exploration and contributions to the field of unified multimodal model.</p>
+</div>
+      <h2 class="title is-3">Citation</h2>
+<pre>
+<code>@article{unipic2,
+  title     = {Skywork UniPic 2.0: Building Kontext Model with Online RL for Unified Multimodal Model},
+  author    = {},
+  journal   = {arXiv preprint arXiv:},
+  year      = {2025}
+}</code>
+</pre>
+</div>
+</section>
+
+  <footer class="footer">
+    <div class="container"><div class="content has-text-centered">Template adapted from <a href="https://nerfies.github.io/">NERFies</a>, CC BY‑SA 4.0.</div></div>
+  </footer>
+
+  <!-- JS: Dynamic Video Loader (max 5 rows) -->
+  <script>
+  // 动态创建视频元素
+  function createVideoElement(path) {
+      const video = document.createElement('video');
+      video.controls = true;
+      video.innerHTML = `
+          <source src="${path}" type="video/mp4">
+          浏览器不支持视频播放
+      `;
+      return video;
+  }
+  const video_scenario_generation=['static/videos/report_video/output_3_65_forward_guidance_scale_6.0.mp4', 'static/videos/report_video/output_0_65_back_guidance_scale_6.0.mp4', 'static/videos/report_video/output_4_65_right_guidance_scale_6.0.mp4', 'static/videos/report_video/output_5_65_forward_guidance_scale_6.0.mp4', 'static/videos/report_video/output_8_65_attack_guidance_scale_6.0.mp4', 'static/videos/report_video/output_15_65_forward_guidance_scale_6.0.mp4', 'static/videos/report_video/output_13_65_forward_guidance_scale_6.0.mp4', 'static/videos/report_video/output_10_65_right_guidance_scale_6.0.mp4']
+  const video_single_keyboard=['static/videos/report_video/output_8_65_forward_guidance_scale_6.0.mp4', 'static/videos/report_video/output_8_65_back_guidance_scale_6.0.mp4', 'static/videos/report_video/output_8_65_left_guidance_scale_6.0.mp4', 'static/videos/report_video/output_8_65_right_guidance_scale_6.0.mp4', 'static/videos/report_video/output_8_65_attack_guidance_scale_6.0.mp4', 'static/videos/report_video/output_8_65_jump_guidance_scale_6.0.mp4']
+  const video_single_mouse=['static/videos/report_video/output_0_65_up_guidance_scale_6.0.mp4', 'static/videos/report_video/output_0_65_down_guidance_scale_6.0.mp4', 'static/videos/report_video/output_0_65_left_guidance_scale_6.0.mp4', 'static/videos/report_video/output_0_65_right_guidance_scale_6.0.mp4', 'static/videos/report_video/output_12_65_upleft_guidance_scale_6.0.mp4', 'static/videos/report_video/output_12_65_upright_guidance_scale_6.0.mp4', 'static/videos/report_video/output_12_65_downleft_guidance_scale_6.0.mp4', 'static/videos/report_video/output_12_65_downright_guidance_scale_6.0.mp4']
+  const video_switch=["static/videos/more_videos/action_switch/0005_Mix_0.mp4", "static/videos/more_videos/action_switch/0010_Mix_0.mp4", "static/videos/more_videos/action_switch/0029_Mix_0.mp4", "static/videos/more_videos/action_switch/0038_Mix_1.mp4", "static/videos/more_videos/action_switch/0048_Mix_1.mp4", "static/videos/more_videos/action_switch/0049_Mix_1.mp4", "static/videos/more_videos/action_switch/output_MC_moveAndcamera_segment_0_65_forward_guidance_scale_6.0.mp4", "static/videos/more_videos/action_switch/output_MC_moveAndcamera_segment_8_65_forward_guidance_scale_6.0.mp4"]
+  const video_ar=['static/videos/report_video/final_MC_moveAndcamera_segment_2_65_output_video_guidance_scale_6.0.mp4', 'static/videos/report_video/final_MC_moveAndcamera_segment_8_65_output_video_guidance_scale_6.0.mp4', 'static/videos/report_video/final_MC_moveAndcamera_segment_1_65_output_video_guidance_scale_6.0.mp4',"static/videos/more_videos/ar_demo/final_MC_moveAndcamera_segment_0_65_output_video_guidance_scale_6.0 (1).mp4", "static/videos/more_videos/ar_demo/final_MC_moveAndcamera_segment_2_65_output_video_guidance_scale_6.0 (1).mp4", "static/videos/more_videos/ar_demo/final_MC_moveAndcamera_segment_8_65_output_video_guidance_scale_6.0 (1).mp4", "static/videos/more_videos/ar_demo/final_MC_moveAndcamera_segment_8_65_output_video_guidance_scale_6.0 (2).mp4","static/videos/more_videos/ar_demo/final_MC_moveAndcamera_segment_11_65_output_video_guidance_scale_6.0.mp4"]
+  const video_dual=['static/videos/report_video/genie_0.45_rank_2_process_0_biome_swamp_num_72_part_0_70_forward_left.mp4', 'static/videos/report_video/output_8_65_forwardright_guidance_scale_6.0.mp4', 'static/videos/report_video/genie_0.45_rank_37_process_0_biome_extreme_hills_num_163_part_560_630_back_left.mp4', 'static/videos/report_video/output_9_65_backright_guidance_scale_6.0.mp4', 'static/videos/report_video/genie_0.45_rank_28_process_0_biome_mushroom_num_251_part_140_210_jump_attack.mp4', 'static/videos/report_video/genie_0.45_rank_22_process_0_biome_savanna_num_23_part_210_280_back_attack.mp4', 'static/videos/report_video/output_1_65_forwardjump_guidance_scale_6.0.mp4', 'static/videos/report_video/mushroom_28_forward_attack.mp4']
+  const video_unreal=['static/videos/report_video/0002_back.mp4', 'static/videos/report_video/0006_back.mp4', 'static/videos/report_video/0036_back_camera_r.mp4', 'static/videos/report_video/0103_back_right.mp4', 'static/videos/report_video/0194_forward.mp4', 'static/videos/report_video/0197_forward.mp4', 'static/videos/report_video/0282_forward_left.mp4', 'static/videos/report_video/0106_back_right.mp4',"static/videos/more_videos/unreal/0004_back.mp4", "static/videos/more_videos/unreal/0099_back_right.mp4", "static/videos/more_videos/unreal/0104_back_right.mp4", "static/videos/more_videos/unreal/0190_forward.mp4"]
+
+  async function initVideoWall() { 
+      const container = document.getElementById('videoContainer_switch');
+      video_switch.forEach(path => {
+          container.appendChild(createVideoElement(path));
+      }); 
+      const container_scenario_generation = document.getElementById('videoContainer_scenario_generation');
+      video_scenario_generation.forEach(path => {
+          console.log(path)
+          container_scenario_generation.appendChild(createVideoElement(path));
+      });
+      const container_single_keybaord = document.getElementById('videoContainer_single_keyboard');
+      video_single_keyboard.forEach(path => {
+          console.log(path)
+          container_single_keybaord.appendChild(createVideoElement(path));
+      });
+      const container_single_mouse = document.getElementById('videoContainer_single_mouse');
+      video_single_mouse.forEach(path => {
+          console.log(path)
+          container_single_mouse.appendChild(createVideoElement(path));
+      });
+      //ar 
+      const container_ar = document.getElementById('videoContainer_ar');
+      video_ar.forEach(path => {
+          container_ar.appendChild(createVideoElement(path));
+      });
+      //dual 
+      const container_dual = document.getElementById('videoContainer_dual');
+      video_dual.forEach(path => {
+          container_dual.appendChild(createVideoElement(path));
+      });
+      //unreal 
+      const container_unreal = document.getElementById('videoContainer_unreal');
+      video_unreal.forEach(path => {
+          container_unreal.appendChild(createVideoElement(path));
+      });
+      
+  }
+  // 页面加载时执行
+  window.onload = function() {
+    initVideoWall();
+    initCarousel();
+  };
+  
+  // Carousel functionality
+  let currentSlide = 0;
+  const totalSlides = 4;
+  
+  function initCarousel() {
+    updateCarousel();
+  }
+  
+  function moveCarousel(direction) {
+    currentSlide += direction;
+    
+    // Loop around
+    if (currentSlide >= totalSlides) {
+      currentSlide = 0;
+    } else if (currentSlide < 0) {
+      currentSlide = totalSlides - 1;
+    }
+    
+    updateCarousel();
+  }
+  
+  function goToSlide(slideIndex) {
+    currentSlide = slideIndex;
+    updateCarousel();
+  }
+  
+  function updateCarousel() {
+    const container = document.getElementById('generationCarousel');
+    const dots = document.querySelectorAll('.carousel-dot');
+    
+    // Update container position
+    container.style.transform = `translateX(-${currentSlide * 25}%)`;
+    
+    // Update dots
+    dots.forEach((dot, index) => {
+      dot.classList.toggle('active', index === currentSlide);
+    });
+  }
+  const MAX_ROWS = 5;
+  const SECTIONS = [
+    {id:'mouse-single', folder:'static/videos/mouse_single', order:['left','right','up','down']},
+    {id:'mouse-compound', folder:'static/videos/mouse2_single', order:['upleft','upright','downleft','downright']},
+    {id:'keyboard', folder:'static/videos/single', order:['forward','back','left','right','jump','attack']}
+  ];
+
+  async function dirList(folder){const r=await fetch(folder+'/');const txt=await r.text();const doc=new DOMParser().parseFromString(txt,'text/html');return Array.from(doc.querySelectorAll('a')).map(a=>a.getAttribute('href')).filter(h=>h.endsWith('.mp4'));}
+  function group(files){const g={};files.forEach(f=>{const m=f.match(/output_(\d+)_65_([^_]+)_/);if(!m)return;const p=m[1],a=m[2];(g[p]=g[p]||[]).push({f,a});});return g;}
+  function col(folder,f,label){return`<div class='column' style='padding:0'><video class='video' controls playsinline><source src='${folder}/${f}' type='video/mp4'></video><p class='has-text-centered is-size-7' style='margin-top:-5px'>${label}</p></div>`;}
+  function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}  
+  //console.log(dirList('static/videos/more_videos/action_switch'))
+  function render(sec,groups){const c=document.getElementById(sec.id);Object.keys(groups).sort((a,b)=>a-b).slice(0,MAX_ROWS).forEach(pref=>{let row="<div class='columns is-centered is-variable is-0'>";sec.order.forEach(act=>{const item=groups[pref].find(x=>x.a===act);if(item)row+=col(sec.folder,item.f,cap(act));});row+='</div>';c.insertAdjacentHTML('beforeend',row);});}
+  (async()=>{for(const s of SECTIONS){try{const files=await dirList(s.folder);render(s,group(files));}catch(e){console.error('load',s.folder,e);}}})();
+  </script>
+</body>
+</html>
