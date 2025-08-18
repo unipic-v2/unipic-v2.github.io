@@ -327,7 +327,7 @@
   <li><a href="https://huggingface.co/stabilityai/stable-diffusion-3.5-medium">SD3.5-Medium</a> for their strong base model</li>
   <li><a href="https://github.com/QwenLM/Qwen2.5-VL">Qwen2.5-VL</a> for their strong vision-language model</li>
   <li><a href="https://github.com/wusize/OpenUni">OpenUni</a> for their simple unified multimodal framework</li>
-  <li><a href="https://github.com/facebookresearch/metaquery">Metauery</a> for their excellent unified multimodal model</li>
+  <li><a href="https://github.com/facebookresearch/metaquery">Metaquery</a> for their excellent unified multimodal model</li>
   <li><a href="https://github.com/yifan123/flow_grpo">Flow-GRPO</a> for their RL training framework</li>
 </ul>
 
@@ -349,121 +349,5 @@
     <div class="container"><div class="content has-text-centered">Template adapted from <a href="https://nerfies.github.io/">NERFies</a>, CC BY‑SA 4.0.</div></div>
   </footer>
 
-  <!-- JS: Dynamic Video Loader (max 5 rows) -->
-  <script>
-  // 动态创建视频元素
-  function createVideoElement(path) {
-      const video = document.createElement('video');
-      video.controls = true;
-      video.innerHTML = `
-          <source src="${path}" type="video/mp4">
-          浏览器不支持视频播放
-      `;
-      return video;
-  }
-  const video_scenario_generation=['static/videos/report_video/output_3_65_forward_guidance_scale_6.0.mp4', 'static/videos/report_video/output_0_65_back_guidance_scale_6.0.mp4', 'static/videos/report_video/output_4_65_right_guidance_scale_6.0.mp4', 'static/videos/report_video/output_5_65_forward_guidance_scale_6.0.mp4', 'static/videos/report_video/output_8_65_attack_guidance_scale_6.0.mp4', 'static/videos/report_video/output_15_65_forward_guidance_scale_6.0.mp4', 'static/videos/report_video/output_13_65_forward_guidance_scale_6.0.mp4', 'static/videos/report_video/output_10_65_right_guidance_scale_6.0.mp4']
-  const video_single_keyboard=['static/videos/report_video/output_8_65_forward_guidance_scale_6.0.mp4', 'static/videos/report_video/output_8_65_back_guidance_scale_6.0.mp4', 'static/videos/report_video/output_8_65_left_guidance_scale_6.0.mp4', 'static/videos/report_video/output_8_65_right_guidance_scale_6.0.mp4', 'static/videos/report_video/output_8_65_attack_guidance_scale_6.0.mp4', 'static/videos/report_video/output_8_65_jump_guidance_scale_6.0.mp4']
-  const video_single_mouse=['static/videos/report_video/output_0_65_up_guidance_scale_6.0.mp4', 'static/videos/report_video/output_0_65_down_guidance_scale_6.0.mp4', 'static/videos/report_video/output_0_65_left_guidance_scale_6.0.mp4', 'static/videos/report_video/output_0_65_right_guidance_scale_6.0.mp4', 'static/videos/report_video/output_12_65_upleft_guidance_scale_6.0.mp4', 'static/videos/report_video/output_12_65_upright_guidance_scale_6.0.mp4', 'static/videos/report_video/output_12_65_downleft_guidance_scale_6.0.mp4', 'static/videos/report_video/output_12_65_downright_guidance_scale_6.0.mp4']
-  const video_switch=["static/videos/more_videos/action_switch/0005_Mix_0.mp4", "static/videos/more_videos/action_switch/0010_Mix_0.mp4", "static/videos/more_videos/action_switch/0029_Mix_0.mp4", "static/videos/more_videos/action_switch/0038_Mix_1.mp4", "static/videos/more_videos/action_switch/0048_Mix_1.mp4", "static/videos/more_videos/action_switch/0049_Mix_1.mp4", "static/videos/more_videos/action_switch/output_MC_moveAndcamera_segment_0_65_forward_guidance_scale_6.0.mp4", "static/videos/more_videos/action_switch/output_MC_moveAndcamera_segment_8_65_forward_guidance_scale_6.0.mp4"]
-  const video_ar=['static/videos/report_video/final_MC_moveAndcamera_segment_2_65_output_video_guidance_scale_6.0.mp4', 'static/videos/report_video/final_MC_moveAndcamera_segment_8_65_output_video_guidance_scale_6.0.mp4', 'static/videos/report_video/final_MC_moveAndcamera_segment_1_65_output_video_guidance_scale_6.0.mp4',"static/videos/more_videos/ar_demo/final_MC_moveAndcamera_segment_0_65_output_video_guidance_scale_6.0 (1).mp4", "static/videos/more_videos/ar_demo/final_MC_moveAndcamera_segment_2_65_output_video_guidance_scale_6.0 (1).mp4", "static/videos/more_videos/ar_demo/final_MC_moveAndcamera_segment_8_65_output_video_guidance_scale_6.0 (1).mp4", "static/videos/more_videos/ar_demo/final_MC_moveAndcamera_segment_8_65_output_video_guidance_scale_6.0 (2).mp4","static/videos/more_videos/ar_demo/final_MC_moveAndcamera_segment_11_65_output_video_guidance_scale_6.0.mp4"]
-  const video_dual=['static/videos/report_video/genie_0.45_rank_2_process_0_biome_swamp_num_72_part_0_70_forward_left.mp4', 'static/videos/report_video/output_8_65_forwardright_guidance_scale_6.0.mp4', 'static/videos/report_video/genie_0.45_rank_37_process_0_biome_extreme_hills_num_163_part_560_630_back_left.mp4', 'static/videos/report_video/output_9_65_backright_guidance_scale_6.0.mp4', 'static/videos/report_video/genie_0.45_rank_28_process_0_biome_mushroom_num_251_part_140_210_jump_attack.mp4', 'static/videos/report_video/genie_0.45_rank_22_process_0_biome_savanna_num_23_part_210_280_back_attack.mp4', 'static/videos/report_video/output_1_65_forwardjump_guidance_scale_6.0.mp4', 'static/videos/report_video/mushroom_28_forward_attack.mp4']
-  const video_unreal=['static/videos/report_video/0002_back.mp4', 'static/videos/report_video/0006_back.mp4', 'static/videos/report_video/0036_back_camera_r.mp4', 'static/videos/report_video/0103_back_right.mp4', 'static/videos/report_video/0194_forward.mp4', 'static/videos/report_video/0197_forward.mp4', 'static/videos/report_video/0282_forward_left.mp4', 'static/videos/report_video/0106_back_right.mp4',"static/videos/more_videos/unreal/0004_back.mp4", "static/videos/more_videos/unreal/0099_back_right.mp4", "static/videos/more_videos/unreal/0104_back_right.mp4", "static/videos/more_videos/unreal/0190_forward.mp4"]
-
-  async function initVideoWall() { 
-      const container = document.getElementById('videoContainer_switch');
-      video_switch.forEach(path => {
-          container.appendChild(createVideoElement(path));
-      }); 
-      const container_scenario_generation = document.getElementById('videoContainer_scenario_generation');
-      video_scenario_generation.forEach(path => {
-          console.log(path)
-          container_scenario_generation.appendChild(createVideoElement(path));
-      });
-      const container_single_keybaord = document.getElementById('videoContainer_single_keyboard');
-      video_single_keyboard.forEach(path => {
-          console.log(path)
-          container_single_keybaord.appendChild(createVideoElement(path));
-      });
-      const container_single_mouse = document.getElementById('videoContainer_single_mouse');
-      video_single_mouse.forEach(path => {
-          console.log(path)
-          container_single_mouse.appendChild(createVideoElement(path));
-      });
-      //ar 
-      const container_ar = document.getElementById('videoContainer_ar');
-      video_ar.forEach(path => {
-          container_ar.appendChild(createVideoElement(path));
-      });
-      //dual 
-      const container_dual = document.getElementById('videoContainer_dual');
-      video_dual.forEach(path => {
-          container_dual.appendChild(createVideoElement(path));
-      });
-      //unreal 
-      const container_unreal = document.getElementById('videoContainer_unreal');
-      video_unreal.forEach(path => {
-          container_unreal.appendChild(createVideoElement(path));
-      });
-      
-  }
-  // 页面加载时执行
-  window.onload = function() {
-    initVideoWall();
-    initCarousel();
-  };
-  
-  // Carousel functionality
-  let currentSlide = 0;
-  const totalSlides = 4;
-  
-  function initCarousel() {
-    updateCarousel();
-  }
-  
-  function moveCarousel(direction) {
-    currentSlide += direction;
-    
-    // Loop around
-    if (currentSlide >= totalSlides) {
-      currentSlide = 0;
-    } else if (currentSlide < 0) {
-      currentSlide = totalSlides - 1;
-    }
-    
-    updateCarousel();
-  }
-  
-  function goToSlide(slideIndex) {
-    currentSlide = slideIndex;
-    updateCarousel();
-  }
-  
-  function updateCarousel() {
-    const container = document.getElementById('generationCarousel');
-    const dots = document.querySelectorAll('.carousel-dot');
-    
-    // Update container position
-    container.style.transform = `translateX(-${currentSlide * 25}%)`;
-    
-    // Update dots
-    dots.forEach((dot, index) => {
-      dot.classList.toggle('active', index === currentSlide);
-    });
-  }
-  const MAX_ROWS = 5;
-  const SECTIONS = [
-    {id:'mouse-single', folder:'static/videos/mouse_single', order:['left','right','up','down']},
-    {id:'mouse-compound', folder:'static/videos/mouse2_single', order:['upleft','upright','downleft','downright']},
-    {id:'keyboard', folder:'static/videos/single', order:['forward','back','left','right','jump','attack']}
-  ];
-
-  async function dirList(folder){const r=await fetch(folder+'/');const txt=await r.text();const doc=new DOMParser().parseFromString(txt,'text/html');return Array.from(doc.querySelectorAll('a')).map(a=>a.getAttribute('href')).filter(h=>h.endsWith('.mp4'));}
-  function group(files){const g={};files.forEach(f=>{const m=f.match(/output_(\d+)_65_([^_]+)_/);if(!m)return;const p=m[1],a=m[2];(g[p]=g[p]||[]).push({f,a});});return g;}
-  function col(folder,f,label){return`<div class='column' style='padding:0'><video class='video' controls playsinline><source src='${folder}/${f}' type='video/mp4'></video><p class='has-text-centered is-size-7' style='margin-top:-5px'>${label}</p></div>`;}
-  function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}  
-  //console.log(dirList('static/videos/more_videos/action_switch'))
-  function render(sec,groups){const c=document.getElementById(sec.id);Object.keys(groups).sort((a,b)=>a-b).slice(0,MAX_ROWS).forEach(pref=>{let row="<div class='columns is-centered is-variable is-0'>";sec.order.forEach(act=>{const item=groups[pref].find(x=>x.a===act);if(item)row+=col(sec.folder,item.f,cap(act));});row+='</div>';c.insertAdjacentHTML('beforeend',row);});}
-  (async()=>{for(const s of SECTIONS){try{const files=await dirList(s.folder);render(s,group(files));}catch(e){console.error('load',s.folder,e);}}})();
-  </script>
 </body>
 </html>
