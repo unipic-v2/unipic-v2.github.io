@@ -28,7 +28,7 @@
       </p>
   
     <p style="margin-top:1rem;">
-      <a href="https://github.com/SkyworkAI/UniPic/blob/main/UniPic-2/assets/pdf/UNIPIC2.pdf" class="button is-dark is-small is-rounded">
+      <a href="https://arxiv.org/abs/2509.04548" class="button is-dark is-small is-rounded">
         <span class="icon"><i class="ai ai-arxiv"></i></span><span>Technical Report</span>
       </a>
       <a href="https://github.com/SkyworkAI/UniPic/tree/main/UniPic-2" class="button is-dark is-small is-rounded">
@@ -333,21 +333,76 @@
 
 <p>We are grateful to the broader research community for their open exploration and contributions to the field of unified multimodal model.</p>
 </div>
-      <h2 class="title is-3">Citation[TBD]</h2>
-<pre>
-<!-- <code>@article{unipic2,
-  title     = {Skywork UniPic 2.0: Building Kontext Model with Online RL for Unified Multimodal Model},
-  author    = {},
-  journal   = {arXiv preprint arXiv:},
-  year      = {2025}
-}</code> -->
-</pre>
+      <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+        <h2 class="title is-3" style="margin-bottom: 0;">Citation</h2>
+        <button id="copy-citation-btn" class="button is-small is-dark" onclick="copyCitation()" title="Copy citation to clipboard">
+          <span class="icon is-small">
+            <i class="fas fa-copy"></i>
+          </span>
+          <span>Copy</span>
+        </button>
+      </div>
+      <pre><code id="citation-content">@misc{wei2025skyworkunipic20building,
+        title={Skywork UniPic 2.0: Building Kontext Model with Online RL for Unified Multimodal Model}, 
+        author={Hongyang Wei and Baixin Xu and Hongbo Liu and Cyrus Wu and Jie Liu and Yi Peng and Peiyu Wang and Zexiang Liu and Jingwen He and Yidan Xietian and Chuanxin Tang and Zidong Wang and Yichen Wei and Liang Hu and Boyi Jiang and William Li and Ying He and Yang Liu and Xuchen Song and Eric Li and Yahui Zhou},
+        year={2025},
+        eprint={2509.04548},
+        archivePrefix={arXiv},
+        primaryClass={cs.CV},
+        url={https://arxiv.org/abs/2509.04548}, 
+      
+}</code></pre>
 </div>
 </section>
 
   <footer class="footer">
     <div class="container"><div class="content has-text-centered">Template adapted from <a href="https://nerfies.github.io/">NERFies</a>, CC BY‑SA 4.0.</div></div>
   </footer>
+
+  <script>
+    function copyCitation() {
+      const citationContent = document.getElementById('citation-content').textContent;
+      const copyButton = document.getElementById('copy-citation-btn');
+      
+      navigator.clipboard.writeText(citationContent).then(function() {
+        // Change button text to indicate success
+        const buttonText = copyButton.querySelector('span:last-child');
+        const originalText = buttonText.textContent;
+        buttonText.textContent = 'Copied!';
+        copyButton.classList.remove('is-dark');
+        copyButton.classList.add('is-success');
+        
+        // Reset button after 2 seconds
+        setTimeout(function() {
+          buttonText.textContent = originalText;
+          copyButton.classList.remove('is-success');
+          copyButton.classList.add('is-dark');
+        }, 2000);
+      }).catch(function(err) {
+        console.error('Failed to copy citation: ', err);
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = citationContent;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        
+        // Show success feedback
+        const buttonText = copyButton.querySelector('span:last-child');
+        const originalText = buttonText.textContent;
+        buttonText.textContent = 'Copied!';
+        copyButton.classList.remove('is-dark');
+        copyButton.classList.add('is-success');
+        
+        setTimeout(function() {
+          buttonText.textContent = originalText;
+          copyButton.classList.remove('is-success');
+          copyButton.classList.add('is-dark');
+        }, 2000);
+      });
+    }
+  </script>
 
 </body>
 </html>
